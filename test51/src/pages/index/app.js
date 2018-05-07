@@ -93,22 +93,79 @@ new App({
             this.setSource();
             this.currentSourceElement.play();
         },
+        getVocalSum(array) {//求和函数
+            var num = 0;
+            for (var i = 6; i < 48; i++) {
+                num = num + array[i];
+            }
+            return num;
+        },
+        getSoundFreqArray(baseNode) {
+            let a = [];
+            for (let i = 0; i < 9; i++) {
+                a.push(baseNode * Math.pow(2, i));
+            }
+            return a;
+        },
+        getBar(nodes) {
+            let b = [];
+            for (let i = 0; i < 9; i++) {
+                b.push(Math.ceil(nodes[i] / 21.5));
+            }
+            return b;
+
+        },
+        //计算该node基波和谐波的和
+        sumCurrentNodes(nodes, freqByteData) {
+            let values = [];
+            let max = 0;
+            let sum = 0;
+            let maxIndex = 0;
+            for (let i = 0; i < nodes.length; i++) {
+                const cc = freqByteData[nodes[i]];
+                if (cc > max) {
+                    max = cc;
+                    maxIndex = i;
+                }
+                sum = sum + cc;
+                values.push(cc);
+            }
+
+            return {sum: sum, maxIndex: maxIndex, values: values};
+        },
+        checkNote(freqByteData) {
+            let sums = [];
+            let results = [];
+
+            for (var i = 0; i < this.baseNodes.length; i++) {
+                let c = this.getBar(this.getSoundFreqArray(this.baseNodes[i]));
+                let result = this.sumCurrentNodes(c, freqByteData);
+                sums.push(result.sum);
+                results.push(result);
+            }
+            let max = Math.max(...sums);
+            let maxIndex = sums.indexOf(max);
+            if (max > 300) {
+                this.currentNode = this.baseNodesNames[maxIndex] + "" + results[maxIndex].maxIndex;
+                console.log(maxIndex, max);
+                return maxIndex;
+
+            }else {return -1}
+
+        },
+
         draw() {
             // requestAnimationFrame(draw);
-            setTimeout(this.draw, 500);
+            setTimeout(this.draw, 50);
             let bufferLength = this.currentAnalyser.frequencyBinCount;
             let dataArray = new Uint8Array(bufferLength);
-            this.currentAnalyser.getByteTimeDomainData(dataArray);
+            this.currentAnalyser.getByteFrequencyData(dataArray);
             // console.log(dataArray);
-            const power = Math.floor((Math.max(...dataArray))-128);
+            const power = Math.floor((this.getVocalSum(dataArray)) / 42 / 255 * 100);
 
             this.msg = `${power  } ${  this.sourceFrom}`;
-            if (power > 10) {
-                this.birds[0].fly();
-            }
-            if (power > 20) {
-                this.birds[1].fly();
-            }
+            var flyIndex=this.checkNote(dataArray);
+            flyIndex==-1?'':this.birds[flyIndex].fly();
             this.rt_array[0].setPower(power);
 
             // canvasCtx.fillStyle = 'rgb(200, 200, 200)';
@@ -173,15 +230,16 @@ new App({
             this.width = theCanvas.width;
             this.height = theCanvas.height;
             this.rt_array = [],	//用于存储柱形条对象
-                this.rt_array.push(new Retangle(this.ctx, 30, this.height / 100, this.width-30, this.height))
+                this.rt_array.push(new Retangle(this.ctx, 30, this.height / 100, this.width - 30, this.height))
             this.birds = [];
             // this.bird = new Bird(this.ctx, this.width / 10, this.height / 2, 0.15);
-            this.birds.push(
-                new Bird(this.ctx, this.width / 10, this.height / 2, 0.15, 0)
-            );
-            this.birds.push(
-                new Bird(this.ctx, this.width / 10 + 40, this.height / 2, 0.15, 3)
-            );
+            for (var i = 0; i < 7; i++) {
+                this.birds.push(
+                    new Bird(this.ctx, this.width / 10 + 40 * i, this.height / 2, 0.15, 0)
+                );
+            }
+
+
             this.items = [];
 
             var item = new Item(
@@ -229,7 +287,7 @@ new App({
 
             // update the elements
             this.ctx.fillStyle = '#111111';
-            this.ctx.fillRect(this.canvas.width-31, 0, 31, this.canvas.height);
+            this.ctx.fillRect(this.canvas.width - 31, 0, 31, this.canvas.height);
 
             this.elementsUpdate();
 
