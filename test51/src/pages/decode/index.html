@@ -18,7 +18,11 @@
 <div id="root">
     <!--<demo v-if="isReady" />-->
     <div class="label">{{msg}}</div>
-    <button id='vbtn' @click="btnClick">播放</button>
+    <button id='vbtn' @click="btnClick">播放音频</button>
+    <button id='vbtn2' @click="btnClick2">seekto6</button>
+    <video ref="video" @loadeddata="ready" playsinline controls>
+        <source src="220788b1285c6b542a9941cc0d16936fef311528e3f0000ac50542caf77.mp4">
+    </video>
 
 
 </div>

@@ -20,23 +20,22 @@ new App({
             this.audioCtx = new (window.AudioContext || window.webkitAudioContext)();
             this.offlineCtx = new (window.OfflineAudioContext || window.webkitOfflineAudioContext)(2, 44100 * 120, 44100);
             this.source = this.offlineCtx.createBufferSource();
+            this.video = this.$refs.video;
             this.getData();
         },
         ready() {
-            // this.isReady = true;
             console.log('media ready!');
-            this.sourceMedia = this.audioCtxMedia.createMediaElementSource(this.myMedia);
-            this.sourceMedia.connect(this.analyserMedia);
-            this.analyserMedia.connect(this.audioCtxMedia.destination);
-            this.currentSourceElement.play();
         },
 
         btnClick() {
-            this.song.start(0,5,10);
+            this.song.start(0, 5, 10);
+        },
+        btnClick2() {
+            this.video.currentTime = 6;
         },
 
         getData() {
-            var _this=this;
+            var _this = this;
             var request = new XMLHttpRequest();
 
             request.open('GET', '220788b1285c6b542a9941cc0d16936fef311528e3f0000ac50542caf77.mp4', true);
