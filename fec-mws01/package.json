@@ -1,0 +1,48 @@
+{
+  "name": "xxx",
+  "version": "1.0.0",
+  "description": "a weex project",
+  "main": "App.js",
+  "scripts": {
+    "build": "node build/webpack.prod.js",
+    "serve": "webpack-dev-server --config build/webpack.dev.js -p",
+    "dev": "node build/webpack.dev.js"
+  },
+  "keywords": [
+    "weex"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-core": "^6.21.0",
+    "babel-eslint": "^7.2.3",
+    "babel-loader": "^6.2.4",
+    "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-plugin-transform-runtime": "^6.9.0",
+    "babel-plugin-async-to-promises": "^1.0.5",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-stage-0": "^6.24.1",
+    "babel-runtime": "^6.9.2",
+    "css-loader": "^0.26.1",
+    "vue-loader": "^13.0.4",
+    "weex-loader": "^0.4.1",
+    "webpack": "^2.2.1",
+    "webpack-dev-server": "^1.16.4",
+    "webpack-merge": "^4.1.0",
+    "vue-router": "^2.1.1",
+    "weex-html5": "^0.4.1",
+    "vue": "^2.1.8",
+    "weex-vue-render": "^0.12.25",
+    "@fes/mo-bridge": "^4.2.5",
+    "@fes/mws-monitor": "0.0.3",
+    "@fes/mws-vue-loader": "^0.1.6",
+    "@fes/mws-request": "^1.0.4",
+    "eslint": "^3.19.0",
+    "eslint-plugin-standard": "^2.3.1",
+    "node-sass": "^4.7.2",
+    "sass-loader": "^6.0.6"
+  },
+  "optionalDependencies": {
+    "ios-deploy": "^1.9.0"
+  }
+}
