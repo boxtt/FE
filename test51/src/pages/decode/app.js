@@ -32,6 +32,7 @@ new App({
         },
         btnClick2() {
             this.video.currentTime = 6;
+            this.video.play();
         },
 
         getData() {

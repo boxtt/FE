@@ -20,16 +20,10 @@ new App({
     methods: {
         init() {
             let _this = this;
-            this.audioCtxStream = new (window.AudioContext || window.webkitAudioContext)();
-            this.audioCtxMedia = new (window.AudioContext || window.webkitAudioContext)();
+            this.audioCtx = new (window.AudioContext || window.webkitAudioContext)();
             this.myMedia = this.$refs.video;
-            this.myStream = this.$refs.stream;
-            this.analyserStream = this.audioCtxStream.createAnalyser();
-            this.analyserMedia = this.audioCtxMedia.createAnalyser();
-            this.analyserStream.fftSize = 1024;
-            this.analyserMedia.fftSize = 1024;
-            this.currentSourceElement = this.myStream;
-            this.currentAnalyser = this.analyserStream;
+            this.analyser = this.audioCtx.createAnalyser();
+            this.analyser.fftSize = 1024;
             if (!this.canvas) {
                 this.canvas = this.$refs.canvas;
                 this.canvas.width = window.innerWidth;
@@ -49,6 +43,13 @@ new App({
             this.currentSourceElement.play();
         },
         initSource() {
+            if(this.sourceFrom=='stream'){
+             this.changeToStream();
+            }
+
+
+        },
+        changeToStream(){
             this.getStream().then(
                 (stream) => {
                     console.log(stream);
@@ -56,11 +57,13 @@ new App({
                     this.myStream.srcObject = stream;
                     // this.myStream.setAttribute("muted",true);
                     this.myStream.muted = "muted";
-                    this.sourceStream = this.audioCtxStream.createMediaStreamSource(stream);
-                    this.sourceStream.connect(this.analyserStream);
+                    this.sourceStream = this.audioCtx.createMediaStreamSource(stream);
+                    this.sourceStream.connect(this.analyser);
                 },
             ).catch(e => console.log(e),
             );
+        },
+        changeToVideo(){
 
         },
         setSource() {
@@ -77,7 +80,7 @@ new App({
         changeSource() {
             this.currentSourceElement.pause();
             if (this.sourceFrom == 'stream') {
-                this.audioCtxStream.suspend();
+                this.audioCtx.suspend();
                 this.audioCtxMedia.resume();
                 this.sourceFrom = 'media';
                 this.currentSourceElement = this.myMedia;
@@ -85,10 +88,10 @@ new App({
 
             } else {
                 this.audioCtxMedia.suspend();
-                this.audioCtxStream.resume();
+                this.audioCtx.resume();
                 this.sourceFrom = 'stream';
                 this.currentSourceElement = this.myStream;
-                this.currentAnalyser = this.analyserStream;
+                this.currentAnalyser = this.analyser;
             }
             this.setSource();
             this.currentSourceElement.play();

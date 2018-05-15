@@ -64,12 +64,12 @@ class Observer {
         }
 
         var args = Array.prototype.slice.call(arguments), _this = this;
-        $.each(args, function (index, eType) {
+        args.every(function (eType,index) {
             if (_this._hasDispatch(eType)) {
                 return true;
             }
             _this._eventsList[eType.toLowerCase()] = [];
-        });
+        })
 
         return this;
     }
@@ -89,7 +89,7 @@ class Observer {
                 return this;
             }
 
-            $.each(list, function (index, dict) {
+            list.every(function ( dict,index) {
                 var fn = dict.fn, scope = dict.scope || _this;
                 if (!fn || "function" !== typeof fn) {
                     fn = _this._emptyFn;
@@ -99,7 +99,7 @@ class Observer {
                 }
 
                 fn.apply(scope, args);
-            });
+            })
         }
 
         return this;

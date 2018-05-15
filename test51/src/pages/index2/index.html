@@ -24,13 +24,8 @@
     <!--</audio>-->
     <!--<button id='abtn' @click="btnClick">HI</button>-->
 
-    <canvas id="viewer" ref="canvas">
-
-    </canvas>
-    <video ref="video" @loadeddata="ready" playsinline controls >
-        <source src="220788b1285c6b542a9941cc0d16936fef311528e3f0000ac50542caf77.mp4">
-    </video>
-    <video ref="stream" @loadeddata="ready" playsinline ></video>
+    <canvas id="viewer" ref="canvas"></canvas>
+    <video ref="video" @loadeddata="ready" playsinline controls ></video>
     <div class="footer">
         <button id='vbtn' @click="btnClick">播放</button>
         <button id='change' @click="changeSource">切换</button>

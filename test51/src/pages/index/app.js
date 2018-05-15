@@ -145,7 +145,7 @@ new App({
             }
             let max = Math.max(...sums);
             let maxIndex = sums.indexOf(max);
-            if (max > 300) {
+            if (max > 400) {
                 this.currentNode = this.baseNodesNames[maxIndex] + "" + results[maxIndex].maxIndex;
                 console.log(maxIndex, max);
                 return maxIndex;
