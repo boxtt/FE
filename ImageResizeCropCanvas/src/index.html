@@ -1,54 +1,1030 @@
 <!DOCTYPE html>
-<html lang="en" class="no-js">
-	<head>
-		<meta charset="UTF-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge"> 
-		<meta name="viewport" content="width=device-width, initial-scale=1"> 
-		<title>Image Resizing with Canvas</title>
-		<meta name="description" content="Learn how to resize images using JavaScript and the HTML5 Canvas element using controls, commonly seen in photo editing applications." />
-		<meta name="keywords" content="canvas, javascript, HTML5, resizing, images" />
-		<meta name="author" content="Codrops" />
-		<link rel="shortcut icon" href="../favicon.ico">
-		<link rel="stylesheet" type="text/css" href="css/normalize.css" />
-		<link rel="stylesheet" type="text/css" href="css/demo.css" />
-		<link rel="stylesheet" type="text/css" href="css/component.css" />
-		<link rel="stylesheet" type="text/css" href="css/main.css" />
-		<!--[if IE]>
-  		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-		<![endif]-->
-	</head>
-	<body>
-		<div class="container">
-			<!-- Top Navigation -->
+<!-- saved from url=(0052)http://beta.moirai.immomo.com:8290/arpet/breed/index -->
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-			<div class="content">
-				<header class="codrops-header">
-					<h1>Image Resizing &amp; Cropping <br /><span>with Canvas!</span></h1>
-				</header>
-				<div class="component">
-					<!-- This image must be on the same domain as the demo or it will not work on a local file system -->
-					<!-- http://en.wikipedia.org/wiki/Cross-origin_resource_sharing -->
-					<img class="resize-image" src="img/image.jpg" alt="image for resizing">
-					<img class="resize-image1" src="img/image.jpg" alt="image for resizing">
-					<button class="btn-crop js-crop">Crop<img class="icon-crop" src="img/crop.svg"></button>
-				</div>
+    <title>宠物列表</title>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
 
-			</div><!-- /content -->
-			<ul class="display">
-				<li>x:<span>1</span></li>
-			</ul>
-			<ul class="display">
-				<li>x:<span>1</span></li>
-			</ul>
-			<ul class="display">
-				<li>x:<span>1</span></li>
-			</ul>
-			<ul class="display">
-				<li>x:<span>1</span></li>
-			</ul>
-		</div> <!-- /container -->
-		<script src="js/jquery-2.1.1.min.js"></script>
-		<script src="js/component.js"></script>
-		<script src="js/main.js"></script>
-	</body>
+
+    <link rel="stylesheet" href="./宠物列表_files/1450244648173-bootstrap.css"><!-- bootstrap.min.css-->
+    <link rel="stylesheet" href="./宠物列表_files/1450263555850-blu.css">
+    <link rel="stylesheet" href="./宠物列表_files/commons.css">
+
+
+    <!---->
+    <link rel="stylesheet" type="text/css" href="css/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="css/resizeableImage.css" />
+    <link rel="stylesheet" type="text/css" href="css/main.css" />
+    <!---->
+    <style>
+        [class^="icon-"], [class*=" icon-"] {
+            display: inline-block;
+            width: 14px;
+            height: 14px;
+            margin-top: 1px;
+            line-height: 14px;
+            vertical-align: text-top;
+            background-image: url("//s.momocdn.com/w/u/img/2016/04/28/1461826111876-glyphicons-halflings.png");
+            background-position: 14px 14px;
+            background-repeat: no-repeat;
+        }
+
+        .icon-girl {
+            background-position: -121px -168px;
+        }
+
+        .icon-boy {
+            background-position: -97px -168px;
+        }
+
+        .card-div {
+            border-style: ridge;
+            border-color: azure;
+            padding-top: 1em
+        }
+
+        .a-little {
+            font-size: 2px;
+        }
+
+        .td_img {
+            width: 100%;
+            height: 100%;
+            margin: 2px;
+        }
+
+        .first_row {
+            margin-bottom: 5px;
+        }
+
+        .table_self th, .table_self td {
+            text-align: left
+        }
+
+        .red {
+            color: red;
+            font-weight: 900;
+        }
+
+        .case {
+            height: 200px;
+            width: 290px;
+            border: 1px solid black;
+            margin-left: 10px;
+        }
+
+        .img-circle {
+            width: 100px;
+            height: 100px;
+            float: right;
+        }
+
+        .nature {
+            width: 140px;
+            height: 20px;
+            padding-top: 150px;
+            padding-right: 5px;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-blu bg-main">
+    <div class="container">
+        <div class="clearfix-sm">
+            <button class="navbar-toggler pull-right hidden-sm-up" type="button" data-toggle="collapse"
+                    data-target="#exCollapsingNavbar2">
+                ☰
+            </button>
+            <a class="navbar-brand" href="http://beta.moirai.immomo.com:8290/">
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAmCAYAAACsyDmTAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyNpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDE0IDc5LjE1MTQ4MSwgMjAxMy8wMy8xMy0xMjowOToxNSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIChNYWNpbnRvc2gpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOkVFQzE4MzZGNzNFNjExRTVBOUMwQjRGQkU2MjRFRUM5IiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOkVFQzE4MzcwNzNFNjExRTVBOUMwQjRGQkU2MjRFRUM5Ij4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6RUVDMTgzNkQ3M0U2MTFFNUE5QzBCNEZCRTYyNEVFQzkiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6RUVDMTgzNkU3M0U2MTFFNUE5QzBCNEZCRTYyNEVFQzkiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz7I3B0UAAACjUlEQVR42syYz0tUURTH33v+SA01mkBnYeQmIQhRYzY6TG5ltuHSv0CE/oEQxD+gTZva1CpkQASxlTWESGTImC7ESEkXClmETig2vr4nzsjr8mburzdPD3wcue/cc77ce9+9513X931H01pBL3gIBkEP6OJnu2ATLIF3oACOtKKTIAVckAbLvr4tc19XJZeKmBTY9+1tn2MZC2oAL/3o7RXHDs3rVlhD7WAVdDu1sW3QB36JD8IE3QBb4JZTW/sO7oKfwUZPcGoEazGIcThHgXNWFPQ68ArHYV2cM3TKaF95KwnwBkyBPVCS+F7jdfIUJCW+w7xvXbxlHjiUvB1jinuWSB1YkMQ+ZA0XgrKSDvOGYso0gTNJjmxQ0IbE+b6lIOKFJAdp+LeoE+CeZI53I1jAa5LnpCFBglIKwc4jEPRHwSdFgjIGwV1wvcKzppDtRNUyHpcQuvYMHIM7QnsbKIIVQ0Fpz/C86uXfTqH9Jo9OH4+irnVT5w7n6liSBH0x6Hiu0O4bxD0gQV8NOj4Gz7lECdoeHxWPDEdosx5/PoIRzY4fmLARmrCYsrzHB6bM6mNaQ/Mk6LOCY08EyVS+PtbL50xecs4UyqexBQlJjnzwcO1XKM5nQLOlqPdV4g+IRT7trgMKr/ss+54oTtUPXhY7XATmQnw+gQdixUjl5LdL2hBvlysKTygxxi9BzPh/5U3IPOf8+Cyn8uVKNfBiDGIWOZfSpzQ5ztVQzFyYGNm3PS346RqIma52E6Kyd9BVymkEQk45lvV1DNFqOYXUty2q+yFxtHTuish3SCeHyfZPZ9ooKFYRUmQf7fPP5lyiS6cJUAoIKXFbg2lc1+DSU7QW8IT/nwS/bYL9FWAAMMygONbpTh0AAAAASUVORK5CYII="
+                     alt="MOMO">
+                运营平台
+            </a>
+        </div>
+        <div class="collapse navbar-toggleable-xs" id="exCollapsingNavbar2">
+            <ul class="nav navbar-nav">
+                <li class="dropdown nav-item">
+                    <a href="http://beta.moirai.immomo.com:8290/arpet/breed/index#" class="dropdown-toggle nav-link"
+                       data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">ar小宠物管理后台 <span
+                            class="caret"></span></a>
+                    <ul class="dropdown-menu dropdown-menu-blu">
+                        <li>
+                            <a class="dropdown-item"
+                               href="http://beta.moirai.immomo.com:8290/arpet/breed/index">小宠物品种管理</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item"
+                               href="http://beta.moirai.immomo.com:8290/arpet/attire/dressKindList">小宠物装扮品类管理</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item"
+                               href="http://beta.moirai.immomo.com:8290/arpet/attire/dressClassIndex">小宠物装扮种类管理</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav pull-xs-right">
+                <li class="nav-item dropdown ">
+                    <a href="http://beta.moirai.immomo.com:8290/arpet/breed/index#"
+                       class="dropdown-toggle nav-link nav-avatar no-arrow" data-toggle="dropdown">
+                        <img src="./宠物列表_files/053540B6-45D4-8F63-7D83-1DEDEA0D185D20180308_S.jpg" alt=""
+                             class="nav-avatar">
+
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-blu dropdown-menu-right">
+                        <li><a class="dropdown-item"
+                               href="http://beta.moirai.immomo.com:8290/admin/q1w2e3/logout/">登出</a></li>
+                        <li><a class="dropdown-item"
+                               href="http://beta.moirai.immomo.com:8290/tools/acl/refresh">刷新权限</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <form class="form-inline navbar-form pull-xs-right" id="search-module">
+                <input class="form-control" type="text" placeholder="搜索" name="module_keyword" id="module_keyword"
+                       autocomplete="off">
+                <div id="search-module-list" class="list-group"></div>
+            </form>
+        </div>
+
+
+    </div>
+</nav>
+
+<div class="container">
+
+    <div class="content">
+        <div class="component">
+            <img src="img/wallpaper.jpg" />
+        </div>
+        <button id="btn-add-1" class="btn-add">添加1</button>
+        <button id="btn-add-2" class="btn-add">添加2</button>
+        <button id="btn-del" class="btn-add">删除</button>
+    </div>
+</div>
+
+
+<div id="container" class="container">
+
+</div>
+
+
+<!-- modal start-->
+<div class="modal fade webuploader-element-invisible" id="editModal" style="display: block;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">添加</h4>
+            </div>
+            <div class="modal-body">
+                <form action="http://beta.moirai.immomo.com:8290/arpet/breed/index" type="post" id="configForm"
+                      data-url="/arpet/breed/saveBreed" success="/arpet/breed/index">
+                    <div class="container-fluid" id="config_box">
+                        <table class="table table-sm table-hover">
+                            <input type="hidden" name="breed_id" value="">
+                            <tbody>
+                            <tr>
+                                <td class="tcol30">品种名称：</td>
+                                <td class="tcol70">
+                                    <input class="form-control form-item-autocheck" form-item-input-must="" title="品种名称"
+                                           name="name" value="">
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="tcol30">价格：</td>
+
+                                <td class="tcol70">
+                                    <input class="form-control form-item-autocheck" form-item-input-must="" title="价格"
+                                           name="price" value="">
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>资源文件:</td>
+                                <td>
+                                    <div id="img-resouser" class="fileupload-plugin webuploader-container"
+                                         data-input="resource" data-autocheck="1" data-api="/tools/upload/zipUpload"
+                                         data-guid="">
+                                        <div class="webuploader-pick">资源文件<input class="form-item-autocheck" title="文件"
+                                                                                 type="hidden" name="resource" value=""
+                                                                                 form-item-input-must=""></div>
+                                        <div id="rt_rt_1cdeeb212uuihhk1fgk1ias1qfe4"
+                                             style="position: absolute; top: 0px; left: 143px; width: 80px; height: 30px; overflow: hidden; bottom: auto; right: auto;">
+                                            <input type="file" name="file" class="webuploader-element-invisible"><label
+                                                style="opacity: 0; width: 100%; height: 100%; display: block; cursor: pointer; background: rgb(255, 255, 255);"></label>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>头像:</td>
+                                <td>
+                                    <div id="img-header" class="picupload-plugin webuploader-container"
+                                         data-input="avatar" data-autocheck="1" data-api="/arpet/breed/imgUpload"
+                                         data-guid="">
+                                        <div class="webuploader-pick">头像<input class="form-item-autocheck" title="图片"
+                                                                               type="hidden" name="avatar" value=""
+                                                                               form-item-input-must=""></div>
+                                        <div id="rt_rt_1cdeeb2111j38m3tns11t4v1kib1"
+                                             style="position: absolute; top: 0px; left: 155px; width: 56px; height: 30px; overflow: hidden; bottom: auto; right: auto;">
+                                            <input type="file" name="file" class="webuploader-element-invisible"
+                                                   accept="image/*"><label
+                                                style="opacity: 0; width: 100%; height: 100%; display: block; cursor: pointer; background: rgb(255, 255, 255);"></label>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>站外h5视频:</td>
+                                <td>
+                                    <div id="video-picker" class="videoupload-plugin webuploader-container"
+                                         data-input="h5video" data-api="/tools/upload/videoUpload" data-guid=""
+                                         data-autocheck="1">
+                                        <div class="webuploader-pick">站外h5视频<input class="form-item-autocheck"
+                                                                                   title="文件" type="hidden"
+                                                                                   name="h5video" value=""
+                                                                                   form-item-input-must=""></div>
+                                        <div id="rt_rt_1cdeeb21310tnq3cvf1s88ip7"
+                                             style="position: absolute; top: 0px; left: 136.312px; width: 94px; height: 30px; overflow: hidden; bottom: auto; right: auto;">
+                                            <input type="file" name="file" class="webuploader-element-invisible"><label
+                                                style="opacity: 0; width: 100%; height: 100%; display: block; cursor: pointer; background: rgb(255, 255, 255);"></label>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+                <button type="button" id="saveConfig" data-target-form="configForm" class="btn btn-primary">保存</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade webuploader-element-invisible" id="confirm_modal" style="display: block;">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title">操作提示</h4>
+            </div>
+            <div id="show_message" class="modal-body">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" id="confirm_button">确认</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="modal fade webuploader-element-invisible" id="quick_op_confirm_box" style="display: block;">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title">确认提示</h4>
+            </div>
+            <div class="modal-body">
+                <p id="quick_op_confirm_box_tip">你确定要做该操作吗?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" id="quick_op_confirm_box_btn" :props="query" post-url="">
+                    确认
+                </button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+
+<div id="tierBox" class="box" style="display: none; top: 287px; left: 304px;"><img
+        src="./宠物列表_files/1F29A8D3-903B-5D45-444F-3E884122894E20180514.jpg" style="width: 300px;"></div>
+<div class="handle-tip"></div><!-- 全屏加载Modal START -->
+<div class="modal full-loading webuploader-element-invisible" data-backdrop="static" style="display: block;">
+    <div class="modal-loading loading loading-tacitly loading-lg"></div>
+</div>
+<!-- 全屏加载Modal END -->
+<div class="xdsoft_datetimepicker xdsoft_noselect xdsoft_">
+    <div class="xdsoft_datepicker active">
+        <div class="xdsoft_mounthpicker">
+            <button type="button" class="xdsoft_prev" style="visibility: visible;"></button>
+            <button type="button" class="xdsoft_today_button" style="visibility: visible;"></button>
+            <div class="xdsoft_label xdsoft_month"><span>May</span>
+                <div class="xdsoft_select xdsoft_monthselect xdsoft_scroller_box">
+                    <div style="margin-top: 0px;">
+                        <div class="xdsoft_option " data-value="0">January</div>
+                        <div class="xdsoft_option " data-value="1">February</div>
+                        <div class="xdsoft_option " data-value="2">March</div>
+                        <div class="xdsoft_option " data-value="3">April</div>
+                        <div class="xdsoft_option xdsoft_current" data-value="4">May</div>
+                        <div class="xdsoft_option " data-value="5">June</div>
+                        <div class="xdsoft_option " data-value="6">July</div>
+                        <div class="xdsoft_option " data-value="7">August</div>
+                        <div class="xdsoft_option " data-value="8">September</div>
+                        <div class="xdsoft_option " data-value="9">October</div>
+                        <div class="xdsoft_option " data-value="10">November</div>
+                        <div class="xdsoft_option " data-value="11">December</div>
+                    </div>
+                    <div class="xdsoft_scrollbar">
+                        <div class="xdsoft_scroller" style="display: block; height: 10px; margin-top: 0px;"></div>
+                    </div>
+                </div>
+                <i></i></div>
+            <div class="xdsoft_label xdsoft_year"><span>2018</span>
+                <div class="xdsoft_select xdsoft_yearselect xdsoft_scroller_box">
+                    <div style="margin-top: 0px;">
+                        <div class="xdsoft_option " data-value="1950">1950</div>
+                        <div class="xdsoft_option " data-value="1951">1951</div>
+                        <div class="xdsoft_option " data-value="1952">1952</div>
+                        <div class="xdsoft_option " data-value="1953">1953</div>
+                        <div class="xdsoft_option " data-value="1954">1954</div>
+                        <div class="xdsoft_option " data-value="1955">1955</div>
+                        <div class="xdsoft_option " data-value="1956">1956</div>
+                        <div class="xdsoft_option " data-value="1957">1957</div>
+                        <div class="xdsoft_option " data-value="1958">1958</div>
+                        <div class="xdsoft_option " data-value="1959">1959</div>
+                        <div class="xdsoft_option " data-value="1960">1960</div>
+                        <div class="xdsoft_option " data-value="1961">1961</div>
+                        <div class="xdsoft_option " data-value="1962">1962</div>
+                        <div class="xdsoft_option " data-value="1963">1963</div>
+                        <div class="xdsoft_option " data-value="1964">1964</div>
+                        <div class="xdsoft_option " data-value="1965">1965</div>
+                        <div class="xdsoft_option " data-value="1966">1966</div>
+                        <div class="xdsoft_option " data-value="1967">1967</div>
+                        <div class="xdsoft_option " data-value="1968">1968</div>
+                        <div class="xdsoft_option " data-value="1969">1969</div>
+                        <div class="xdsoft_option " data-value="1970">1970</div>
+                        <div class="xdsoft_option " data-value="1971">1971</div>
+                        <div class="xdsoft_option " data-value="1972">1972</div>
+                        <div class="xdsoft_option " data-value="1973">1973</div>
+                        <div class="xdsoft_option " data-value="1974">1974</div>
+                        <div class="xdsoft_option " data-value="1975">1975</div>
+                        <div class="xdsoft_option " data-value="1976">1976</div>
+                        <div class="xdsoft_option " data-value="1977">1977</div>
+                        <div class="xdsoft_option " data-value="1978">1978</div>
+                        <div class="xdsoft_option " data-value="1979">1979</div>
+                        <div class="xdsoft_option " data-value="1980">1980</div>
+                        <div class="xdsoft_option " data-value="1981">1981</div>
+                        <div class="xdsoft_option " data-value="1982">1982</div>
+                        <div class="xdsoft_option " data-value="1983">1983</div>
+                        <div class="xdsoft_option " data-value="1984">1984</div>
+                        <div class="xdsoft_option " data-value="1985">1985</div>
+                        <div class="xdsoft_option " data-value="1986">1986</div>
+                        <div class="xdsoft_option " data-value="1987">1987</div>
+                        <div class="xdsoft_option " data-value="1988">1988</div>
+                        <div class="xdsoft_option " data-value="1989">1989</div>
+                        <div class="xdsoft_option " data-value="1990">1990</div>
+                        <div class="xdsoft_option " data-value="1991">1991</div>
+                        <div class="xdsoft_option " data-value="1992">1992</div>
+                        <div class="xdsoft_option " data-value="1993">1993</div>
+                        <div class="xdsoft_option " data-value="1994">1994</div>
+                        <div class="xdsoft_option " data-value="1995">1995</div>
+                        <div class="xdsoft_option " data-value="1996">1996</div>
+                        <div class="xdsoft_option " data-value="1997">1997</div>
+                        <div class="xdsoft_option " data-value="1998">1998</div>
+                        <div class="xdsoft_option " data-value="1999">1999</div>
+                        <div class="xdsoft_option " data-value="2000">2000</div>
+                        <div class="xdsoft_option " data-value="2001">2001</div>
+                        <div class="xdsoft_option " data-value="2002">2002</div>
+                        <div class="xdsoft_option " data-value="2003">2003</div>
+                        <div class="xdsoft_option " data-value="2004">2004</div>
+                        <div class="xdsoft_option " data-value="2005">2005</div>
+                        <div class="xdsoft_option " data-value="2006">2006</div>
+                        <div class="xdsoft_option " data-value="2007">2007</div>
+                        <div class="xdsoft_option " data-value="2008">2008</div>
+                        <div class="xdsoft_option " data-value="2009">2009</div>
+                        <div class="xdsoft_option " data-value="2010">2010</div>
+                        <div class="xdsoft_option " data-value="2011">2011</div>
+                        <div class="xdsoft_option " data-value="2012">2012</div>
+                        <div class="xdsoft_option " data-value="2013">2013</div>
+                        <div class="xdsoft_option " data-value="2014">2014</div>
+                        <div class="xdsoft_option " data-value="2015">2015</div>
+                        <div class="xdsoft_option " data-value="2016">2016</div>
+                        <div class="xdsoft_option " data-value="2017">2017</div>
+                        <div class="xdsoft_option xdsoft_current" data-value="2018">2018</div>
+                        <div class="xdsoft_option " data-value="2019">2019</div>
+                        <div class="xdsoft_option " data-value="2020">2020</div>
+                        <div class="xdsoft_option " data-value="2021">2021</div>
+                        <div class="xdsoft_option " data-value="2022">2022</div>
+                        <div class="xdsoft_option " data-value="2023">2023</div>
+                        <div class="xdsoft_option " data-value="2024">2024</div>
+                        <div class="xdsoft_option " data-value="2025">2025</div>
+                        <div class="xdsoft_option " data-value="2026">2026</div>
+                        <div class="xdsoft_option " data-value="2027">2027</div>
+                        <div class="xdsoft_option " data-value="2028">2028</div>
+                        <div class="xdsoft_option " data-value="2029">2029</div>
+                        <div class="xdsoft_option " data-value="2030">2030</div>
+                        <div class="xdsoft_option " data-value="2031">2031</div>
+                        <div class="xdsoft_option " data-value="2032">2032</div>
+                        <div class="xdsoft_option " data-value="2033">2033</div>
+                        <div class="xdsoft_option " data-value="2034">2034</div>
+                        <div class="xdsoft_option " data-value="2035">2035</div>
+                        <div class="xdsoft_option " data-value="2036">2036</div>
+                        <div class="xdsoft_option " data-value="2037">2037</div>
+                        <div class="xdsoft_option " data-value="2038">2038</div>
+                        <div class="xdsoft_option " data-value="2039">2039</div>
+                        <div class="xdsoft_option " data-value="2040">2040</div>
+                        <div class="xdsoft_option " data-value="2041">2041</div>
+                        <div class="xdsoft_option " data-value="2042">2042</div>
+                        <div class="xdsoft_option " data-value="2043">2043</div>
+                        <div class="xdsoft_option " data-value="2044">2044</div>
+                        <div class="xdsoft_option " data-value="2045">2045</div>
+                        <div class="xdsoft_option " data-value="2046">2046</div>
+                        <div class="xdsoft_option " data-value="2047">2047</div>
+                        <div class="xdsoft_option " data-value="2048">2048</div>
+                        <div class="xdsoft_option " data-value="2049">2049</div>
+                        <div class="xdsoft_option " data-value="2050">2050</div>
+                    </div>
+                    <div class="xdsoft_scrollbar">
+                        <div class="xdsoft_scroller" style="display: block; height: 10px; margin-top: 0px;"></div>
+                    </div>
+                </div>
+                <i></i></div>
+            <button type="button" class="xdsoft_next" style="visibility: visible;"></button>
+        </div>
+        <div class="xdsoft_calendar">
+            <table>
+                <thead>
+                <tr>
+                    <th>Sun</th>
+                    <th>Mon</th>
+                    <th>Tue</th>
+                    <th>Wed</th>
+                    <th>Thu</th>
+                    <th>Fri</th>
+                    <th>Sat</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td data-date="29" data-month="3" data-year="2018"
+                        class="xdsoft_date xdsoft_day_of_week0 xdsoft_date xdsoft_other_month xdsoft_weekend" title="">
+                        <div>29</div>
+                    </td>
+                    <td data-date="30" data-month="3" data-year="2018"
+                        class="xdsoft_date xdsoft_day_of_week1 xdsoft_date xdsoft_other_month" title="">
+                        <div>30</div>
+                    </td>
+                    <td data-date="1" data-month="4" data-year="2018"
+                        class="xdsoft_date xdsoft_day_of_week2 xdsoft_date" title="">
+                        <div>1</div>
+                    </td>
+                    <td data-date="2" data-month="4" data-year="2018"
+                        class="xdsoft_date xdsoft_day_of_week3 xdsoft_date" title="">
+                        <div>2</div>
+                    </td>
+                    <td data-date="3" data-month="4" data-year="2018"
+                        class="xdsoft_date xdsoft_day_of_week4 xdsoft_date" title="">
+                        <div>3</div>
+                    </td>
+                    <td data-date="4" data-month="4" data-year="2018"
+                        class="xdsoft_date xdsoft_day_of_week5 xdsoft_date" title="">
+                        <div>4</div>
+                    </td>
+                    <td data-date="5" data-month="4" data-year="2018"
+                        class="xdsoft_date xdsoft_day_of_week6 xdsoft_date xdsoft_weekend" title="">
+                        <div>5</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td data-date="6" data-month="4" data-year="2018"
+                        class="xdsoft_date xdsoft_day_of_week0 xdsoft_date xdsoft_weekend" title="">
+                        <div>6</div>
+                    </td>
+                    <td data-date="7" data-month="4" data-year="2018"
+                        class="xdsoft_date xdsoft_day_of_week1 xdsoft_date" title="">
+                        <div>7</div>
+                    </td>
+                    <td data-date="8" data-month="4" data-year="2018"
+                        class="xdsoft_date xdsoft_day_of_week2 xdsoft_date" title="">
+                        <div>8</div>
+                    </td>
+                    <td data-date="9" data-month="4" data-year="2018"
+                        class="xdsoft_date xdsoft_day_of_week3 xdsoft_date" title="">
+                        <div>9</div>
+                    </td>
+                    <td data-date="10" data-month="4" data-year="2018"
+                        class="xdsoft_date xdsoft_day_of_week4 xdsoft_date" title="">
+                        <div>10</div>
+                    </td>
+                    <td data-date="11" data-month="4" data-year="2018"
+                        class="xdsoft_date xdsoft_day_of_week5 xdsoft_date" title="">
+                        <div>11</div>
+                    </td>
+                    <td data-date="12" data-month="4" data-year="2018"
+                        class="xdsoft_date xdsoft_day_of_week6 xdsoft_date xdsoft_weekend" title="">
+                        <div>12</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td data-date="13" data-month="4" data-year="2018"
+                        class="xdsoft_date xdsoft_day_of_week0 xdsoft_date xdsoft_weekend" title="">
+                        <div>13</div>
+                    </td>
+                    <td data-date="14" data-month="4" data-year="2018"
+                        class="xdsoft_date xdsoft_day_of_week1 xdsoft_date xdsoft_current xdsoft_today" title="">
+                        <div>14</div>
+                    </td>
+                    <td data-date="15" data-month="4" data-year="2018"
+                        class="xdsoft_date xdsoft_day_of_week2 xdsoft_date" title="">
+                        <div>15</div>
+                    </td>
+                    <td data-date="16" data-month="4" data-year="2018"
+                        class="xdsoft_date xdsoft_day_of_week3 xdsoft_date" title="">
+                        <div>16</div>
+                    </td>
+                    <td data-date="17" data-month="4" data-year="2018"
+                        class="xdsoft_date xdsoft_day_of_week4 xdsoft_date" title="">
+                        <div>17</div>
+                    </td>
+                    <td data-date="18" data-month="4" data-year="2018"
+                        class="xdsoft_date xdsoft_day_of_week5 xdsoft_date" title="">
+                        <div>18</div>
+                    </td>
+                    <td data-date="19" data-month="4" data-year="2018"
+                        class="xdsoft_date xdsoft_day_of_week6 xdsoft_date xdsoft_weekend" title="">
+                        <div>19</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td data-date="20" data-month="4" data-year="2018"
+                        class="xdsoft_date xdsoft_day_of_week0 xdsoft_date xdsoft_weekend" title="">
+                        <div>20</div>
+                    </td>
+                    <td data-date="21" data-month="4" data-year="2018"
+                        class="xdsoft_date xdsoft_day_of_week1 xdsoft_date" title="">
+                        <div>21</div>
+                    </td>
+                    <td data-date="22" data-month="4" data-year="2018"
+                        class="xdsoft_date xdsoft_day_of_week2 xdsoft_date" title="">
+                        <div>22</div>
+                    </td>
+                    <td data-date="23" data-month="4" data-year="2018"
+                        class="xdsoft_date xdsoft_day_of_week3 xdsoft_date" title="">
+                        <div>23</div>
+                    </td>
+                    <td data-date="24" data-month="4" data-year="2018"
+                        class="xdsoft_date xdsoft_day_of_week4 xdsoft_date" title="">
+                        <div>24</div>
+                    </td>
+                    <td data-date="25" data-month="4" data-year="2018"
+                        class="xdsoft_date xdsoft_day_of_week5 xdsoft_date" title="">
+                        <div>25</div>
+                    </td>
+                    <td data-date="26" data-month="4" data-year="2018"
+                        class="xdsoft_date xdsoft_day_of_week6 xdsoft_date xdsoft_weekend" title="">
+                        <div>26</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td data-date="27" data-month="4" data-year="2018"
+                        class="xdsoft_date xdsoft_day_of_week0 xdsoft_date xdsoft_weekend" title="">
+                        <div>27</div>
+                    </td>
+                    <td data-date="28" data-month="4" data-year="2018"
+                        class="xdsoft_date xdsoft_day_of_week1 xdsoft_date" title="">
+                        <div>28</div>
+                    </td>
+                    <td data-date="29" data-month="4" data-year="2018"
+                        class="xdsoft_date xdsoft_day_of_week2 xdsoft_date" title="">
+                        <div>29</div>
+                    </td>
+                    <td data-date="30" data-month="4" data-year="2018"
+                        class="xdsoft_date xdsoft_day_of_week3 xdsoft_date" title="">
+                        <div>30</div>
+                    </td>
+                    <td data-date="31" data-month="4" data-year="2018"
+                        class="xdsoft_date xdsoft_day_of_week4 xdsoft_date" title="">
+                        <div>31</div>
+                    </td>
+                    <td data-date="1" data-month="5" data-year="2018"
+                        class="xdsoft_date xdsoft_day_of_week5 xdsoft_date xdsoft_other_month" title="">
+                        <div>1</div>
+                    </td>
+                    <td data-date="2" data-month="5" data-year="2018"
+                        class="xdsoft_date xdsoft_day_of_week6 xdsoft_date xdsoft_other_month xdsoft_weekend" title="">
+                        <div>2</div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <button type="button" class="xdsoft_save_selected blue-gradient-button" style="display: none;">Save Selected
+        </button>
+    </div>
+    <div class="xdsoft_timepicker active">
+        <button type="button" class="xdsoft_prev"></button>
+        <div class="xdsoft_time_box xdsoft_scroller_box">
+            <div class="xdsoft_time_variant" style="margin-top: 0px;">
+                <div class="xdsoft_time " data-hour="0" data-minute="0">00:00</div>
+                <div class="xdsoft_time " data-hour="1" data-minute="0">01:00</div>
+                <div class="xdsoft_time " data-hour="2" data-minute="0">02:00</div>
+                <div class="xdsoft_time " data-hour="3" data-minute="0">03:00</div>
+                <div class="xdsoft_time " data-hour="4" data-minute="0">04:00</div>
+                <div class="xdsoft_time " data-hour="5" data-minute="0">05:00</div>
+                <div class="xdsoft_time " data-hour="6" data-minute="0">06:00</div>
+                <div class="xdsoft_time " data-hour="7" data-minute="0">07:00</div>
+                <div class="xdsoft_time " data-hour="8" data-minute="0">08:00</div>
+                <div class="xdsoft_time " data-hour="9" data-minute="0">09:00</div>
+                <div class="xdsoft_time " data-hour="10" data-minute="0">10:00</div>
+                <div class="xdsoft_time " data-hour="11" data-minute="0">11:00</div>
+                <div class="xdsoft_time xdsoft_current" data-hour="12" data-minute="0">12:00</div>
+                <div class="xdsoft_time " data-hour="13" data-minute="0">13:00</div>
+                <div class="xdsoft_time " data-hour="14" data-minute="0">14:00</div>
+                <div class="xdsoft_time " data-hour="15" data-minute="0">15:00</div>
+                <div class="xdsoft_time " data-hour="16" data-minute="0">16:00</div>
+                <div class="xdsoft_time " data-hour="17" data-minute="0">17:00</div>
+                <div class="xdsoft_time " data-hour="18" data-minute="0">18:00</div>
+                <div class="xdsoft_time " data-hour="19" data-minute="0">19:00</div>
+                <div class="xdsoft_time " data-hour="20" data-minute="0">20:00</div>
+                <div class="xdsoft_time " data-hour="21" data-minute="0">21:00</div>
+                <div class="xdsoft_time " data-hour="22" data-minute="0">22:00</div>
+                <div class="xdsoft_time " data-hour="23" data-minute="0">23:00</div>
+            </div>
+            <div class="xdsoft_scrollbar">
+                <div class="xdsoft_scroller" style="display: block; height: 10px; margin-top: 0px;"></div>
+            </div>
+        </div>
+        <button type="button" class="xdsoft_next"></button>
+    </div>
+</div>
+<div class="xdsoft_datetimepicker xdsoft_noselect xdsoft_">
+    <div class="xdsoft_datepicker active">
+        <div class="xdsoft_mounthpicker">
+            <button type="button" class="xdsoft_prev" style="visibility: visible;"></button>
+            <button type="button" class="xdsoft_today_button" style="visibility: visible;"></button>
+            <div class="xdsoft_label xdsoft_month"><span>May</span>
+                <div class="xdsoft_select xdsoft_monthselect xdsoft_scroller_box">
+                    <div style="margin-top: 0px;">
+                        <div class="xdsoft_option " data-value="0">January</div>
+                        <div class="xdsoft_option " data-value="1">February</div>
+                        <div class="xdsoft_option " data-value="2">March</div>
+                        <div class="xdsoft_option " data-value="3">April</div>
+                        <div class="xdsoft_option xdsoft_current" data-value="4">May</div>
+                        <div class="xdsoft_option " data-value="5">June</div>
+                        <div class="xdsoft_option " data-value="6">July</div>
+                        <div class="xdsoft_option " data-value="7">August</div>
+                        <div class="xdsoft_option " data-value="8">September</div>
+                        <div class="xdsoft_option " data-value="9">October</div>
+                        <div class="xdsoft_option " data-value="10">November</div>
+                        <div class="xdsoft_option " data-value="11">December</div>
+                    </div>
+                    <div class="xdsoft_scrollbar">
+                        <div class="xdsoft_scroller" style="display: block; height: 10px; margin-top: 0px;"></div>
+                    </div>
+                </div>
+                <i></i></div>
+            <div class="xdsoft_label xdsoft_year"><span>2018</span>
+                <div class="xdsoft_select xdsoft_yearselect xdsoft_scroller_box">
+                    <div style="margin-top: 0px;">
+                        <div class="xdsoft_option " data-value="1950">1950</div>
+                        <div class="xdsoft_option " data-value="1951">1951</div>
+                        <div class="xdsoft_option " data-value="1952">1952</div>
+                        <div class="xdsoft_option " data-value="1953">1953</div>
+                        <div class="xdsoft_option " data-value="1954">1954</div>
+                        <div class="xdsoft_option " data-value="1955">1955</div>
+                        <div class="xdsoft_option " data-value="1956">1956</div>
+                        <div class="xdsoft_option " data-value="1957">1957</div>
+                        <div class="xdsoft_option " data-value="1958">1958</div>
+                        <div class="xdsoft_option " data-value="1959">1959</div>
+                        <div class="xdsoft_option " data-value="1960">1960</div>
+                        <div class="xdsoft_option " data-value="1961">1961</div>
+                        <div class="xdsoft_option " data-value="1962">1962</div>
+                        <div class="xdsoft_option " data-value="1963">1963</div>
+                        <div class="xdsoft_option " data-value="1964">1964</div>
+                        <div class="xdsoft_option " data-value="1965">1965</div>
+                        <div class="xdsoft_option " data-value="1966">1966</div>
+                        <div class="xdsoft_option " data-value="1967">1967</div>
+                        <div class="xdsoft_option " data-value="1968">1968</div>
+                        <div class="xdsoft_option " data-value="1969">1969</div>
+                        <div class="xdsoft_option " data-value="1970">1970</div>
+                        <div class="xdsoft_option " data-value="1971">1971</div>
+                        <div class="xdsoft_option " data-value="1972">1972</div>
+                        <div class="xdsoft_option " data-value="1973">1973</div>
+                        <div class="xdsoft_option " data-value="1974">1974</div>
+                        <div class="xdsoft_option " data-value="1975">1975</div>
+                        <div class="xdsoft_option " data-value="1976">1976</div>
+                        <div class="xdsoft_option " data-value="1977">1977</div>
+                        <div class="xdsoft_option " data-value="1978">1978</div>
+                        <div class="xdsoft_option " data-value="1979">1979</div>
+                        <div class="xdsoft_option " data-value="1980">1980</div>
+                        <div class="xdsoft_option " data-value="1981">1981</div>
+                        <div class="xdsoft_option " data-value="1982">1982</div>
+                        <div class="xdsoft_option " data-value="1983">1983</div>
+                        <div class="xdsoft_option " data-value="1984">1984</div>
+                        <div class="xdsoft_option " data-value="1985">1985</div>
+                        <div class="xdsoft_option " data-value="1986">1986</div>
+                        <div class="xdsoft_option " data-value="1987">1987</div>
+                        <div class="xdsoft_option " data-value="1988">1988</div>
+                        <div class="xdsoft_option " data-value="1989">1989</div>
+                        <div class="xdsoft_option " data-value="1990">1990</div>
+                        <div class="xdsoft_option " data-value="1991">1991</div>
+                        <div class="xdsoft_option " data-value="1992">1992</div>
+                        <div class="xdsoft_option " data-value="1993">1993</div>
+                        <div class="xdsoft_option " data-value="1994">1994</div>
+                        <div class="xdsoft_option " data-value="1995">1995</div>
+                        <div class="xdsoft_option " data-value="1996">1996</div>
+                        <div class="xdsoft_option " data-value="1997">1997</div>
+                        <div class="xdsoft_option " data-value="1998">1998</div>
+                        <div class="xdsoft_option " data-value="1999">1999</div>
+                        <div class="xdsoft_option " data-value="2000">2000</div>
+                        <div class="xdsoft_option " data-value="2001">2001</div>
+                        <div class="xdsoft_option " data-value="2002">2002</div>
+                        <div class="xdsoft_option " data-value="2003">2003</div>
+                        <div class="xdsoft_option " data-value="2004">2004</div>
+                        <div class="xdsoft_option " data-value="2005">2005</div>
+                        <div class="xdsoft_option " data-value="2006">2006</div>
+                        <div class="xdsoft_option " data-value="2007">2007</div>
+                        <div class="xdsoft_option " data-value="2008">2008</div>
+                        <div class="xdsoft_option " data-value="2009">2009</div>
+                        <div class="xdsoft_option " data-value="2010">2010</div>
+                        <div class="xdsoft_option " data-value="2011">2011</div>
+                        <div class="xdsoft_option " data-value="2012">2012</div>
+                        <div class="xdsoft_option " data-value="2013">2013</div>
+                        <div class="xdsoft_option " data-value="2014">2014</div>
+                        <div class="xdsoft_option " data-value="2015">2015</div>
+                        <div class="xdsoft_option " data-value="2016">2016</div>
+                        <div class="xdsoft_option " data-value="2017">2017</div>
+                        <div class="xdsoft_option xdsoft_current" data-value="2018">2018</div>
+                        <div class="xdsoft_option " data-value="2019">2019</div>
+                        <div class="xdsoft_option " data-value="2020">2020</div>
+                        <div class="xdsoft_option " data-value="2021">2021</div>
+                        <div class="xdsoft_option " data-value="2022">2022</div>
+                        <div class="xdsoft_option " data-value="2023">2023</div>
+                        <div class="xdsoft_option " data-value="2024">2024</div>
+                        <div class="xdsoft_option " data-value="2025">2025</div>
+                        <div class="xdsoft_option " data-value="2026">2026</div>
+                        <div class="xdsoft_option " data-value="2027">2027</div>
+                        <div class="xdsoft_option " data-value="2028">2028</div>
+                        <div class="xdsoft_option " data-value="2029">2029</div>
+                        <div class="xdsoft_option " data-value="2030">2030</div>
+                        <div class="xdsoft_option " data-value="2031">2031</div>
+                        <div class="xdsoft_option " data-value="2032">2032</div>
+                        <div class="xdsoft_option " data-value="2033">2033</div>
+                        <div class="xdsoft_option " data-value="2034">2034</div>
+                        <div class="xdsoft_option " data-value="2035">2035</div>
+                        <div class="xdsoft_option " data-value="2036">2036</div>
+                        <div class="xdsoft_option " data-value="2037">2037</div>
+                        <div class="xdsoft_option " data-value="2038">2038</div>
+                        <div class="xdsoft_option " data-value="2039">2039</div>
+                        <div class="xdsoft_option " data-value="2040">2040</div>
+                        <div class="xdsoft_option " data-value="2041">2041</div>
+                        <div class="xdsoft_option " data-value="2042">2042</div>
+                        <div class="xdsoft_option " data-value="2043">2043</div>
+                        <div class="xdsoft_option " data-value="2044">2044</div>
+                        <div class="xdsoft_option " data-value="2045">2045</div>
+                        <div class="xdsoft_option " data-value="2046">2046</div>
+                        <div class="xdsoft_option " data-value="2047">2047</div>
+                        <div class="xdsoft_option " data-value="2048">2048</div>
+                        <div class="xdsoft_option " data-value="2049">2049</div>
+                        <div class="xdsoft_option " data-value="2050">2050</div>
+                    </div>
+                    <div class="xdsoft_scrollbar">
+                        <div class="xdsoft_scroller" style="display: block; height: 10px; margin-top: 0px;"></div>
+                    </div>
+                </div>
+                <i></i></div>
+            <button type="button" class="xdsoft_next" style="visibility: visible;"></button>
+        </div>
+        <div class="xdsoft_calendar">
+            <table>
+                <thead>
+                <tr>
+                    <th>Sun</th>
+                    <th>Mon</th>
+                    <th>Tue</th>
+                    <th>Wed</th>
+                    <th>Thu</th>
+                    <th>Fri</th>
+                    <th>Sat</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td data-date="29" data-month="3" data-year="2018"
+                        class="xdsoft_date xdsoft_day_of_week0 xdsoft_date xdsoft_other_month xdsoft_weekend" title="">
+                        <div>29</div>
+                    </td>
+                    <td data-date="30" data-month="3" data-year="2018"
+                        class="xdsoft_date xdsoft_day_of_week1 xdsoft_date xdsoft_other_month" title="">
+                        <div>30</div>
+                    </td>
+                    <td data-date="1" data-month="4" data-year="2018"
+                        class="xdsoft_date xdsoft_day_of_week2 xdsoft_date" title="">
+                        <div>1</div>
+                    </td>
+                    <td data-date="2" data-month="4" data-year="2018"
+                        class="xdsoft_date xdsoft_day_of_week3 xdsoft_date" title="">
+                        <div>2</div>
+                    </td>
+                    <td data-date="3" data-month="4" data-year="2018"
+                        class="xdsoft_date xdsoft_day_of_week4 xdsoft_date" title="">
+                        <div>3</div>
+                    </td>
+                    <td data-date="4" data-month="4" data-year="2018"
+                        class="xdsoft_date xdsoft_day_of_week5 xdsoft_date" title="">
+                        <div>4</div>
+                    </td>
+                    <td data-date="5" data-month="4" data-year="2018"
+                        class="xdsoft_date xdsoft_day_of_week6 xdsoft_date xdsoft_weekend" title="">
+                        <div>5</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td data-date="6" data-month="4" data-year="2018"
+                        class="xdsoft_date xdsoft_day_of_week0 xdsoft_date xdsoft_weekend" title="">
+                        <div>6</div>
+                    </td>
+                    <td data-date="7" data-month="4" data-year="2018"
+                        class="xdsoft_date xdsoft_day_of_week1 xdsoft_date" title="">
+                        <div>7</div>
+                    </td>
+                    <td data-date="8" data-month="4" data-year="2018"
+                        class="xdsoft_date xdsoft_day_of_week2 xdsoft_date" title="">
+                        <div>8</div>
+                    </td>
+                    <td data-date="9" data-month="4" data-year="2018"
+                        class="xdsoft_date xdsoft_day_of_week3 xdsoft_date" title="">
+                        <div>9</div>
+                    </td>
+                    <td data-date="10" data-month="4" data-year="2018"
+                        class="xdsoft_date xdsoft_day_of_week4 xdsoft_date" title="">
+                        <div>10</div>
+                    </td>
+                    <td data-date="11" data-month="4" data-year="2018"
+                        class="xdsoft_date xdsoft_day_of_week5 xdsoft_date" title="">
+                        <div>11</div>
+                    </td>
+                    <td data-date="12" data-month="4" data-year="2018"
+                        class="xdsoft_date xdsoft_day_of_week6 xdsoft_date xdsoft_weekend" title="">
+                        <div>12</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td data-date="13" data-month="4" data-year="2018"
+                        class="xdsoft_date xdsoft_day_of_week0 xdsoft_date xdsoft_weekend" title="">
+                        <div>13</div>
+                    </td>
+                    <td data-date="14" data-month="4" data-year="2018"
+                        class="xdsoft_date xdsoft_day_of_week1 xdsoft_date xdsoft_current xdsoft_today" title="">
+                        <div>14</div>
+                    </td>
+                    <td data-date="15" data-month="4" data-year="2018"
+                        class="xdsoft_date xdsoft_day_of_week2 xdsoft_date" title="">
+                        <div>15</div>
+                    </td>
+                    <td data-date="16" data-month="4" data-year="2018"
+                        class="xdsoft_date xdsoft_day_of_week3 xdsoft_date" title="">
+                        <div>16</div>
+                    </td>
+                    <td data-date="17" data-month="4" data-year="2018"
+                        class="xdsoft_date xdsoft_day_of_week4 xdsoft_date" title="">
+                        <div>17</div>
+                    </td>
+                    <td data-date="18" data-month="4" data-year="2018"
+                        class="xdsoft_date xdsoft_day_of_week5 xdsoft_date" title="">
+                        <div>18</div>
+                    </td>
+                    <td data-date="19" data-month="4" data-year="2018"
+                        class="xdsoft_date xdsoft_day_of_week6 xdsoft_date xdsoft_weekend" title="">
+                        <div>19</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td data-date="20" data-month="4" data-year="2018"
+                        class="xdsoft_date xdsoft_day_of_week0 xdsoft_date xdsoft_weekend" title="">
+                        <div>20</div>
+                    </td>
+                    <td data-date="21" data-month="4" data-year="2018"
+                        class="xdsoft_date xdsoft_day_of_week1 xdsoft_date" title="">
+                        <div>21</div>
+                    </td>
+                    <td data-date="22" data-month="4" data-year="2018"
+                        class="xdsoft_date xdsoft_day_of_week2 xdsoft_date" title="">
+                        <div>22</div>
+                    </td>
+                    <td data-date="23" data-month="4" data-year="2018"
+                        class="xdsoft_date xdsoft_day_of_week3 xdsoft_date" title="">
+                        <div>23</div>
+                    </td>
+                    <td data-date="24" data-month="4" data-year="2018"
+                        class="xdsoft_date xdsoft_day_of_week4 xdsoft_date" title="">
+                        <div>24</div>
+                    </td>
+                    <td data-date="25" data-month="4" data-year="2018"
+                        class="xdsoft_date xdsoft_day_of_week5 xdsoft_date" title="">
+                        <div>25</div>
+                    </td>
+                    <td data-date="26" data-month="4" data-year="2018"
+                        class="xdsoft_date xdsoft_day_of_week6 xdsoft_date xdsoft_weekend" title="">
+                        <div>26</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td data-date="27" data-month="4" data-year="2018"
+                        class="xdsoft_date xdsoft_day_of_week0 xdsoft_date xdsoft_weekend" title="">
+                        <div>27</div>
+                    </td>
+                    <td data-date="28" data-month="4" data-year="2018"
+                        class="xdsoft_date xdsoft_day_of_week1 xdsoft_date" title="">
+                        <div>28</div>
+                    </td>
+                    <td data-date="29" data-month="4" data-year="2018"
+                        class="xdsoft_date xdsoft_day_of_week2 xdsoft_date" title="">
+                        <div>29</div>
+                    </td>
+                    <td data-date="30" data-month="4" data-year="2018"
+                        class="xdsoft_date xdsoft_day_of_week3 xdsoft_date" title="">
+                        <div>30</div>
+                    </td>
+                    <td data-date="31" data-month="4" data-year="2018"
+                        class="xdsoft_date xdsoft_day_of_week4 xdsoft_date" title="">
+                        <div>31</div>
+                    </td>
+                    <td data-date="1" data-month="5" data-year="2018"
+                        class="xdsoft_date xdsoft_day_of_week5 xdsoft_date xdsoft_other_month" title="">
+                        <div>1</div>
+                    </td>
+                    <td data-date="2" data-month="5" data-year="2018"
+                        class="xdsoft_date xdsoft_day_of_week6 xdsoft_date xdsoft_other_month xdsoft_weekend" title="">
+                        <div>2</div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <button type="button" class="xdsoft_save_selected blue-gradient-button" style="display: none;">Save Selected
+        </button>
+    </div>
+    <div class="xdsoft_timepicker active">
+        <button type="button" class="xdsoft_prev"></button>
+        <div class="xdsoft_time_box xdsoft_scroller_box">
+            <div class="xdsoft_time_variant" style="margin-top: 0px;">
+                <div class="xdsoft_time " data-hour="0" data-minute="0">00:00</div>
+                <div class="xdsoft_time " data-hour="1" data-minute="0">01:00</div>
+                <div class="xdsoft_time " data-hour="2" data-minute="0">02:00</div>
+                <div class="xdsoft_time " data-hour="3" data-minute="0">03:00</div>
+                <div class="xdsoft_time " data-hour="4" data-minute="0">04:00</div>
+                <div class="xdsoft_time " data-hour="5" data-minute="0">05:00</div>
+                <div class="xdsoft_time " data-hour="6" data-minute="0">06:00</div>
+                <div class="xdsoft_time " data-hour="7" data-minute="0">07:00</div>
+                <div class="xdsoft_time " data-hour="8" data-minute="0">08:00</div>
+                <div class="xdsoft_time " data-hour="9" data-minute="0">09:00</div>
+                <div class="xdsoft_time " data-hour="10" data-minute="0">10:00</div>
+                <div class="xdsoft_time " data-hour="11" data-minute="0">11:00</div>
+                <div class="xdsoft_time xdsoft_current" data-hour="12" data-minute="0">12:00</div>
+                <div class="xdsoft_time " data-hour="13" data-minute="0">13:00</div>
+                <div class="xdsoft_time " data-hour="14" data-minute="0">14:00</div>
+                <div class="xdsoft_time " data-hour="15" data-minute="0">15:00</div>
+                <div class="xdsoft_time " data-hour="16" data-minute="0">16:00</div>
+                <div class="xdsoft_time " data-hour="17" data-minute="0">17:00</div>
+                <div class="xdsoft_time " data-hour="18" data-minute="0">18:00</div>
+                <div class="xdsoft_time " data-hour="19" data-minute="0">19:00</div>
+                <div class="xdsoft_time " data-hour="20" data-minute="0">20:00</div>
+                <div class="xdsoft_time " data-hour="21" data-minute="0">21:00</div>
+                <div class="xdsoft_time " data-hour="22" data-minute="0">22:00</div>
+                <div class="xdsoft_time " data-hour="23" data-minute="0">23:00</div>
+            </div>
+            <div class="xdsoft_scrollbar">
+                <div class="xdsoft_scroller" style="display: block; height: 10px; margin-top: 0px;"></div>
+            </div>
+        </div>
+        <button type="button" class="xdsoft_next"></button>
+    </div>
+</div>
+
+
+
+<script src="js/jquery-2.1.1.min.js"></script>
+<script src="js/resizeableImage.js"></script>
+<script src="js/playground.js"></script>
+<script src="js/main.js"></script>
+
+</body>
 </html>

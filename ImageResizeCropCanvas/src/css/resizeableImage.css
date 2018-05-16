@@ -14,10 +14,14 @@
     outline: 2px dashed rgba(222,60,80,.9);
 }
 
-.resize-handle-ne,
-.resize-handle-se,
-.resize-handle-nw,
-.resize-handle-sw {
+.resize-container.active img {
+    outline: 2px dashed rgba(222,60,80,.9);
+}
+
+.resize-container.active .resize-handle-ne,
+.resize-container.active .resize-handle-se,
+.resize-container.active .resize-handle-nw,
+.resize-container.active .resize-handle-sw {
     position: absolute;
     display: block;
     width: 10px;
@@ -110,20 +114,3 @@
 	margin-top: -2px;
 }
 
-.btn-crop {
-	position: absolute;
-	vertical-align: bottom;
-	right: 5px;
-	bottom: 5px;
-	padding: 6px 10px;
-	z-index: 999;
-	background-color: rgb(222,60,80);
-	border: none;
-	border-radius: 5px;
-	color: #FFF;
-}
-
-.btn-crop img {
-	vertical-align: middle;
-	margin-left: 8px;
-}

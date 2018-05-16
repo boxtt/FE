@@ -1,10 +1,36 @@
-/*.resize-image{*/
-    /*position:absolute;*/
-    /*top: 0;*/
-    /*left: 0;*/
-/*}*/
-/*.resize-image{*/
-    /*position:absolute;*/
-    /*top: 10px;*/
-    /*left: 10px;*/
-/*}*/
+.component {
+    position: relative;
+    height: 500px;
+    border: 3px solid #49708A;
+    max-width: 901px;
+    overflow: scroll;
+    margin: 0 auto;
+}
+.btn-add {
+    position: absolute;
+    vertical-align: bottom;
+    padding: 6px 10px;
+    z-index: 999;
+    background-color: rgb(222,60,80);
+    border: none;
+    border-radius: 5px;
+    color: #FFF;
+}
+#btn-add-1 {
+    right: 145px;
+    bottom: 5px;
+}
+#btn-add-2 {
+    right: 75px;
+    bottom: 5px;
+}
+
+#btn-del {
+    right: 5px;
+    bottom: 5px;
+}
+
+.btn-add img {
+    vertical-align: middle;
+    margin-left: 8px;
+}

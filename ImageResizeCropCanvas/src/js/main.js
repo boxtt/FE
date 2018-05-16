@@ -1,3 +1,5 @@
-// Kick everything off with the target image
-var img1 = new resizeableImage($('.resize-image'), 0, 0, 40);
-var img2 = new resizeableImage($('.resize-image1'), 5, 5, 60);
+var obj = {
+    array1: [{src: './img/image.jpg', x: 250, y: 100, w: 50}, {src: './img/image.jpg', x: 350, y: 100, w: 40}],
+    array2: [{src: './img/image.jpg', x: 150, y: 200, w: 40}, {src: './img/image.jpg', x: 150, y: 300, w: 60}]
+}
+var playground = new Playground(obj);
