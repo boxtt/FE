@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!-- saved from url=(0052)http://beta.moirai.immomo.com:8290/arpet/breed/index -->
-<html>
+<html xmlns:v-for="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
@@ -15,9 +15,9 @@
 
 
     <!---->
-    <link rel="stylesheet" type="text/css" href="css/normalize.css" />
-    <link rel="stylesheet" type="text/css" href="css/resizeableImage.css" />
-    <link rel="stylesheet" type="text/css" href="css/main.css" />
+    <link rel="stylesheet" type="text/css" href="css/normalize.css"/>
+    <link rel="stylesheet" type="text/css" href="css/resizeableImage.css"/>
+    <link rel="stylesheet" type="text/css" href="css/main.css"/>
     <!---->
     <style>
         [class^="icon-"], [class*=" icon-"] {
@@ -161,12 +161,40 @@
 
     <div class="content">
         <div class="component">
-            <img src="img/wallpaper.jpg" />
+            <img id="wallpaper" src="img/wallpaper.jpg"/>
         </div>
         <button id="btn-add-1" class="btn-add">添加1</button>
         <button id="btn-add-2" class="btn-add">添加2</button>
         <button id="btn-del" class="btn-add">删除</button>
+        <div id="panel">
+            <div id="item_panel" class="panel" >
+                <div class="item">
+                    <span class="label">x</span>
+                    <input id="input_x" class="item-input" type="number" value=""/>
+                </div>
+                <div class="item">
+                    <span class="label">y</span><input class="item-input" type="number" value=""/>
+                </div>
+                <div class="item">
+                    <span class="label">w</span><input class="item-input" type="number" value=""/>
+                </div>
+                <div class="item">
+                    <span class="label">h</span><input class="item-input" type="number" value=""/>
+                </div>
+            </div>
+            <div id="control_panel" class="control-panel" >
+                <p>独照</p>
+                <div class="one">
+                </div>
+                <p>合照</p>
+                <div class="two">
+                </div>
+
+            </div>
+        </div>
+
     </div>
+
 </div>
 
 
@@ -320,7 +348,6 @@
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
-
 
 
 <div id="tierBox" class="box" style="display: none; top: 287px; left: 304px;"><img
@@ -1020,7 +1047,7 @@
 </div>
 
 
-
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="js/jquery-2.1.1.min.js"></script>
 <script src="js/resizeableImage.js"></script>
 <script src="js/playground.js"></script>

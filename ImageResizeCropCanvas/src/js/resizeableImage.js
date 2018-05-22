@@ -23,6 +23,7 @@ var ResizeableImage = function (img_src, x, y, w, cate, id, callback) {
         img.id = id;
         img.cate = cate;
         var component = document.getElementsByClassName('component')[0];
+
         component.appendChild(img);
         $(img).on('load', _this.init.bind(_this));
     }
