@@ -163,9 +163,6 @@
         <div class="component">
             <img id="wallpaper" src="img/wallpaper.jpg"/>
         </div>
-        <button id="btn-add-1" class="btn-add">添加1</button>
-        <button id="btn-add-2" class="btn-add">添加2</button>
-        <button id="btn-del" class="btn-add">删除</button>
         <div id="panel">
             <div id="item_panel" class="panel" >
                 <div class="item">
@@ -173,22 +170,28 @@
                     <input id="input_x" class="item-input" type="number" value=""/>
                 </div>
                 <div class="item">
-                    <span class="label">y</span><input class="item-input" type="number" value=""/>
+                    <span class="label">y</span>
+                    <input id="input_y" class="item-input" type="number" value=""/>
                 </div>
                 <div class="item">
-                    <span class="label">w</span><input class="item-input" type="number" value=""/>
+                    <span class="label">w</span>
+                    <input id="input_w" class="item-input" type="number" value=""/>
                 </div>
                 <div class="item">
-                    <span class="label">h</span><input class="item-input" type="number" value=""/>
+                    <span class="label">h</span>
+                    <input id="input_h" class="item-input" type="number" value="" readonly="true"/>
                 </div>
             </div>
             <div id="control_panel" class="control-panel" >
-                <p>独照</p>
-                <div class="one">
+                <div>独照        <button id="btn-add-1" class="btn-add">添加</button></div>
+                <div class="panel-content one">
                 </div>
-                <p>合照</p>
-                <div class="two">
+                <div >合照        <button id="btn-add-2" class="btn-add">添加</button></div>
+                <div class="panel-content two">
                 </div>
+                <button id="btn-del" class="btn-add">删了它</button>
+                <button id="hide_all" class="btn-add">隐藏全部</button>
+                <button id="show_all" class="btn-add">显示全部</button>
 
             </div>
         </div>
@@ -1047,7 +1050,6 @@
 </div>
 
 
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="js/jquery-2.1.1.min.js"></script>
 <script src="js/resizeableImage.js"></script>
 <script src="js/playground.js"></script>

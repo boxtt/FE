@@ -1,4 +1,4 @@
-var ResizeableImage = function (img_src, x, y, w, cate, id, callback) {
+var ResizeableImage = function (img_src, x, y, w, cate, id, callback, callbackFocus) {
     this.id = id;
     this.$container = null;
     this.orig_src = new Image();
@@ -28,6 +28,7 @@ var ResizeableImage = function (img_src, x, y, w, cate, id, callback) {
         $(img).on('load', _this.init.bind(_this));
     }
     this.init = function (e) {
+        var _this=this;
         var img = e.currentTarget;
         this.orig_src.src = this.img_src;
         this.image_target = img;
@@ -44,7 +45,10 @@ var ResizeableImage = function (img_src, x, y, w, cate, id, callback) {
         // Add events
         this.$container.on('mousedown touchstart', '.resize-handle', this.startResize);
         this.$container.on('mousedown touchstart', 'img', this.startMoving);
-        this.$container.on('click', 'img', callback);
+        this.$container.on('click', 'img', function (e) {
+            callbackFocus(e);
+            _this.updateDataFromDOM();
+        });
         this.$container.on('setdata', () => {
             this.$container.css("left", this.x);
             this.$container.css("top", this.y);
@@ -162,7 +166,7 @@ var ResizeableImage = function (img_src, x, y, w, cate, id, callback) {
         this.y = parseInt(this.$container.css("top"));
         this.w = parseInt($(this.image_target).css("width"));
         this.h = parseInt($(this.image_target).css("height"));
-
+        callback(cate, id, this.x, this.y, this.w, this.h);
     }
     this.setX = (x) => {
         this.x = x;
@@ -170,7 +174,7 @@ var ResizeableImage = function (img_src, x, y, w, cate, id, callback) {
 
     }
     this.setY = (y) => {
-        this.x = y;
+        this.y = y;
         this.$container.trigger('setdata');
 
     }
@@ -192,6 +196,15 @@ var ResizeableImage = function (img_src, x, y, w, cate, id, callback) {
             this.$container.addClass('active');
         } else {
             this.$container.removeClass('active');
+
+        }
+    }
+    this.setShow = (b) => {
+        this.isShow = b;
+        if (b) {
+            this.$container.addClass('show');
+        } else {
+            this.$container.removeClass('show');
 
         }
     }

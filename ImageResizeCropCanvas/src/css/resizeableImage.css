@@ -3,12 +3,16 @@
     display: inline-block;
     cursor: move;
     margin: 0 auto;
+	display: none;
+
 }
 
 .resize-container img {
     display: block
 }
-
+.resize-container.show {
+	display: block;
+}
 .resize-container:hover img,
 .resize-container:active img {
     outline: 2px dashed rgba(222,60,80,.9);
@@ -24,8 +28,9 @@
 .resize-container.active .resize-handle-sw {
     position: absolute;
     display: block;
-    width: 10px;
-    height: 10px;
+    width: 4px;
+    height: 4px;
+	border-radius: 2px;
     background: rgba(222,60,80,.9);
     z-index: 999;
 }
